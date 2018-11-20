@@ -5,7 +5,7 @@ skip = 4;
 trueP = [];
 for i = 1:skip:(ss(1)+1-n)
     for j = 1:skip:(ss(2)+1-n)
-        Spatch = S(i:i+n-1, j:j+n-1, 3);
+        Spatch = S(i:i+n-1, j:j+n-1, :);
         trueP = [trueP, Spatch(:)];
     end
 end
@@ -16,8 +16,8 @@ P = double(trueP) - meanmat;
 [V, D] = eig(P*P');
 
 Etotal = sum(diag(D));
-E = D(n*n,n*n);
-i = n*n;
+E = D(3*n*n,3*n*n);
+i = 3*n*n;
 Vred = V(:,i);
 while(E < 0.95*Etotal)
     i = i - 1;
@@ -31,7 +31,7 @@ trueX = [];
 sx = size(X);
 for i = 1:d:(sx(1)+1-n)
     for j = 1:d:(sx(2)+1-n)
-        Xpatch = X(i:i+n-1, j:j+n-1, 3);
+        Xpatch = X(i:i+n-1, j:j+n-1, :);
         trueX = [trueX, Xpatch(:)];
     end
 end
