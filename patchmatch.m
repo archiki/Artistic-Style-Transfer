@@ -25,7 +25,7 @@ while(E < 0.95*Etotal)
     E = E + D(i,i);
 end
 
-P = Vred' * P;
+P = Vred' * P; % nearest neighbours to be found here
 
 trueX = [];
 sx = size(X);
