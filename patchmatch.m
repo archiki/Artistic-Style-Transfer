@@ -1,4 +1,4 @@
-%function z = patchmatch(n, d, X, S)
+%function [Rmat, Zmat] = patchmatch(n, d, X, S)
 
 ss = size(S);
 skip = 4;
@@ -25,12 +25,16 @@ while(E < 0.95*Etotal)
     E = E + D(i,i);
 end
 
-P = Vred' * P; % nearest neighbours to be found here
+P = Vred' * P;
 
 trueX = [];
 sx = size(X);
+Rmat = [];
 for i = 1:d:(sx(1)+1-n)
     for j = 1:d:(sx(2)+1-n)
+        allzero = zeros(sx);
+        allzero(i:i+n-1, j:j+n-1, :) = 1;
+        Rmat = [Rmat, allzero(:)];
         Xpatch = X(i:i+n-1, j:j+n-1, :);
         trueX = [trueX, Xpatch(:)];
     end
@@ -38,5 +42,7 @@ end
 
 meanmat = mp*ones(1, size(trueX,2));
 RXmat = Vred' * (double(trueX) - meanmat);
+
 [idx, D] = knnsearch(P', RXmat');
 
+Zmat = trueP(:,idx);
