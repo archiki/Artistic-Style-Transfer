@@ -1,0 +1,29 @@
+tic;
+C=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/house.jpg');
+S=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/starry_night.jpg');
+W=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/content_masks/house.jpg');
+W=mat2gray(W);
+W=repmat(W, [1 1 3]);
+sigma_s = 5;
+sigma_r = 0.2;
+n=[33];
+Lmax=1;
+d=[28, 18, 8, 5];
+Ialg=;
+Cc= (imhistmatch(C,S));
+X=double(Cc);
+for l= Lmax:-1:1
+    for m=1:size(n,2)
+        for k= 1:Ialg
+            X=0.25*X+ 0.75*double(Cc);
+            figure(1),imshow(mat2gray(X));
+            [Rmat, Zmat] = patchmatch(n(m), d(m), X, S);
+            X= irls(Rmat, X, Zmat, W, S,50);
+            X=RF(X,sigma_s,sigma_r);
+            figure(k+m),imshow(mat2gray(X));
+            
+        end
+    end
+end
+figure(2),imshow(mat2gray(uint8(X)));
+toc;

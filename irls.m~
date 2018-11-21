@@ -1,9 +1,9 @@
-function [Xtilde]=irls(R,X,z, W, S, eps)
+function [Xtilde]=irls(R,X,z, W)
     
     I= 5; 
     Xhat=double(X(:)); 
     r=0.8;
-    %eps= 300;
+    eps= 300;
    
     for k=1:I
         
@@ -24,7 +24,6 @@ function [Xtilde]=irls(R,X,z, W, S, eps)
 Xtilde = reshape(Xtilde, [400 400 3]);
 Xtilde=(1./(W+ones(size(W)))).*(Xtilde+W.*X);
 Xtrial=uint8(Xtilde);
-Xtilde=double(imhistmatch(Xtrial,S));
-%imshow(mat2gray(Xtilde));
+Xtilde=imhistmatch(Xtrial,S);
 
 end

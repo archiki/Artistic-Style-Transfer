@@ -1,7 +1,7 @@
 function [Rmat, Zmat] = patchmatch(n, d, X, S)
 
 ss = size(S);
-skip = 4;
+skip = 1;
 trueP = [];
 for i = 1:skip:(ss(1)+1-n)
     for j = 1:skip:(ss(2)+1-n)
@@ -45,4 +45,6 @@ RXmat = Vred' * (double(trueX) - meanmat);
 
 [idx, ~] = knnsearch(P', RXmat');
 
-Zmat = trueP(:,idx);
+Rmat = double(Rmat);
+Zmat = double(trueP(:,idx));
+end
