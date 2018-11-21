@@ -1,4 +1,4 @@
-%function [Rmat, Zmat] = patchmatch(n, d, X, S)
+function [Rmat, Zmat] = patchmatch(n, d, X, S)
 
 ss = size(S);
 skip = 4;
@@ -43,6 +43,6 @@ end
 meanmat = mp*ones(1, size(trueX,2));
 RXmat = Vred' * (double(trueX) - meanmat);
 
-[idx, D] = knnsearch(P', RXmat');
+[idx, ~] = knnsearch(P', RXmat');
 
 Zmat = trueP(:,idx);
