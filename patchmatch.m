@@ -32,9 +32,9 @@ sx = size(X);
 Rmat = [];
 for i = 1:d:(sx(1)+1-n)
     for j = 1:d:(sx(2)+1-n)
-        allzero = zeros(sx);
-        allzero(i:i+n-1, j:j+n-1, :) = 1;
-        Rmat = [Rmat, allzero(:)];
+        allzero = false(sx);
+        allzero(i:i+n-1, j:j+n-1, :) = true;
+        Rmat = logical([Rmat, allzero(:)]);
         Xpatch = X(i:i+n-1, j:j+n-1, :);
         trueX = [trueX, Xpatch(:)];
     end
@@ -45,6 +45,5 @@ RXmat = Vred' * (double(trueX) - meanmat);
 
 [idx, ~] = knnsearch(P', RXmat');
 
-Rmat = double(Rmat);
 Zmat = double(trueP(:,idx));
 end
