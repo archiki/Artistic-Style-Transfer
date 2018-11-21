@@ -1,4 +1,5 @@
 tic;
+
 C=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/house.jpg');
 S=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/starry_night.jpg');
 W=imread('/home/archiki/Desktop/SEM-V/DIP/project/images/content_masks/house.jpg');

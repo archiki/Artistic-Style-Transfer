@@ -1,4 +1,5 @@
 content=imread('images/selfie.jpg');
+% 
 content=rgb2gray(content);
 sigma_filt=1;
 hsize_smooth=5;

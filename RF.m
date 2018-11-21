@@ -1,5 +1,6 @@
 %  RF  Domain transform recursive edge-preserving filter.
 % 
+%
 %  F = RF(img, sigma_s, sigma_r, num_iterations, joint_image)
 %
 %  Parameters:
