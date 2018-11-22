@@ -12,7 +12,7 @@ Lmax=3;
 d=[28, 18, 8,5];
 Ialg=2;
 Cc= (imhistmatch(C,S));
-X=double(Cc)+50*randn(size(Cc));
+X=double(Cc)+60*randn(size(Cc));
 Ctemp=X;
 for l= Lmax:-1:1
     L=2^(l-1);
@@ -25,11 +25,11 @@ for l= Lmax:-1:1
     for m=1:size(n,2)
         for k= 1:Ialg
             %if L > 1
-            X= 0.75*X + 0.25*double(Crescaled);
+            X= 0.9*X+0.1*double(Crescaled);
             %end
             figure(1),imshow(mat2gray(X));
             [Rmat, Zmat] = patchmatch(n(m), d(m), X, Srescaled);
-            X= irls(Rmat, X, Zmat, Wrescaled, Srescaled,40*(6-ceil((m+k)/2)));
+            X= irls(Rmat, X, Zmat, Wrescaled, Srescaled,100);
             X=RF(X,sigma_s,sigma_r);
             %figure(4),imshow(mat2gray(X));
             
